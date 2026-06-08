@@ -11,7 +11,8 @@
 body {
     font-family: 'Montserrat', sans-serif;
     color: var(--soft-black);
-    background-color: #ffffff;
+    /* CHANGED: Swapped from pure white to your soft warm red tint */
+    background-color: var(--warm-bg); 
     overflow-x: hidden;
 }
 
@@ -107,8 +108,9 @@ body {
    3. TIME COUNTER SECTION STYLING
    ========================================================================== */
 .time-section {
-    background-color: #ffffff;
-    min-height: 50vh; /* Gives the section breathing room as you scroll */
+    /* CHANGED: Made transparent so the body's warm background shows through */
+    background-color: transparent; 
+    min-height: 50vh; 
 }
 
 /* Make this specific title use your Deep Rose palette color */
@@ -119,8 +121,9 @@ body {
 
 /* Individual Stat Cards Setup */
 .stat-card {
-    background-color: var(--warm-bg); /* Warm Cream Tint #FFE6D4 */
-    border: 1px solid rgba(224, 107, 128, 0.2); /* Soft Rose subtle border outline */
+    /* CHANGED: Made the cards crisp white so they pop against the warm red background */
+    background-color: #ffffff; 
+    border: 1px solid rgba(224, 107, 128, 0.2); 
     transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -158,7 +161,8 @@ body {
    4. SCRAPBOOK CAROUSELS STYLING
    ========================================================================== */
 .scrapbook-section {
-    background-color: #ffffff;
+    /* CHANGED: Made transparent so the background remains seamless */
+    background-color: transparent;
 }
 
 /* Force Bootstrap to slide completely seamlessly */
@@ -183,7 +187,8 @@ body {
    5. STAGGERED TIMELINE STYLING
    ========================================================================== */
 #timeline-section {
-    background-color: #ffffff;
+    /* CHANGED: Made transparent so the background remains seamless */
+    background-color: transparent;
     padding-bottom: 100px !important;
 }
 
@@ -324,4 +329,11 @@ body {
 
 @keyframes cursorBlink {
     50% { opacity: 0; }
+}
+
+/* Update path visibility */
+#bg-path {
+    /* CHANGED: Since the background is now #FFE6D4, we make the hidden path line 
+       a slightly darker rosy tint so it stays visible before scrolling over it */
+    stroke: rgba(224, 107, 128, 0.25); 
 }
