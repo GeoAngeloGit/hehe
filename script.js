@@ -26,13 +26,31 @@ document.addEventListener("DOMContentLoaded", function () {
     const envelopeOverlay = document.getElementById('envelope-overlay');
     const openEnvelopeBtn = document.getElementById('open-envelope-btn');
     const mainContent = document.getElementById('main-content');
+    const bgMusic = document.getElementById('bg-music');
 
     if (openEnvelopeBtn && envelopeOverlay) {
         openEnvelopeBtn.addEventListener('click', function () {
+            // 1. Fade out the invitation envelope cover
             envelopeOverlay.classList.add('fade-out-overlay');
+            
             if(mainContent) {
                 mainContent.style.visibility = "visible";
                 mainContent.style.opacity = "1";
+            }
+
+            // 2. NEW: Trigger the soft background music playback
+            if (bgMusic) {
+                bgMusic.volume = 0.3; // Sets volume to a gentle 30% background level
+                
+                // Play audio and catch any potential browser permission flags gracefully
+                bgMusic.play().catch(error => {
+                    console.log("Browser audio autoplay restriction triggered: ", error);
+                });
+            }
+
+            // Start the 30-second stagger countdown for the scratch card
+            if (typeof queueNextScratchCard === "function") {
+                queueNextScratchCard();
             }
         });
     }
@@ -114,27 +132,30 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ==========================================
-    // 3. TIMELINE ROW ENTRANCE ANIMATION (IntersectionObserver)
+    // 3. GLOBAL SCROLL ENTRANCE REVEAL ENGINE
     // ==========================================
-    const timelineRows = document.querySelectorAll('.reveal-row');
+    // Select all timeline rows, carousel containers, and polaroid elements
+    const elementsToReveal = document.querySelectorAll('.reveal-row, .reveal-carousel, .reveal-polaroid');
     
-    const rowOptions = {
+    const revealOptions = {
         root: null,
-        threshold: 0.12, /* Triggers when 12% of the row comes into view */
-        rootMargin: "0px 0px -40px 0px"
+        threshold: 0.1, /* Triggers cleanly when 10% of the element hits the screen */
+        rootMargin: "0px 0px -20px 0px"
     };
 
-    const timelineObserver = new IntersectionObserver((entries, observer) => {
+    const globalEntranceObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
+                // Inject the active CSS class to execute the transition animation sequence
                 entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Animates only once
+                observer.unobserve(entry.target); // Kill the tracker so it stays fixed in place
             }
         });
-    }, rowOptions);
+    }, revealOptions);
 
-    timelineRows.forEach(row => {
-        timelineObserver.observe(row);
+    // Bind all targeted content elements to the engine
+    elementsToReveal.forEach(element => {
+        globalEntranceObserver.observe(element);
     });
 
     // ==========================================
@@ -216,6 +237,18 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 400);
         });
     }
+
+    const polaroidWrappers = document.querySelectorAll('.polaroid-wrapper');
+    
+    polaroidWrappers.forEach(wrapper => {
+        wrapper.addEventListener('click', function(e) {
+            // Find the inner chassis that contains the actual 3D rotation styles
+            const innerCard = this.querySelector('.polaroid-inner');
+            if (innerCard) {
+                innerCard.classList.toggle('flipped');
+            }
+        });
+    });
 
 // ==========================================
     // 7. STAGGERED SCRATCH-CARD CORE LOGIC
@@ -301,18 +334,28 @@ document.addEventListener("DOMContentLoaded", function () {
     // Open Pop-up Actions for Modal popup layers
     if (scratchFab && scratchModal && closeScratchBtn) {
         scratchFab.addEventListener('click', () => {
+            const underContent = document.querySelector('.scratch-under-content');
+            
+            // 1. Force the inner hidden image content to stay completely invisible at first
+            if (underContent) {
+                underContent.classList.remove('ready');
+            }
+
             scratchModal.classList.remove('d-none');
             
-            // 1. Give the modal a tiny fraction of a second to scale up into the viewport
             setTimeout(() => {
                 scratchModal.classList.add('show');
             }, 15);
 
-            // 2. FIXED: Wait 400 milliseconds for the CSS transition to complete 
-            // so the canvas has its real physical width/height before we paint it!
+            // 2. Wait for the modal transition to finish, draw the mask, 
+            // and THEN toggle visibility on the background layer safely covered!
             setTimeout(() => {
                 initScratchCanvas();
-            }, 400); // 400ms matches your modal-overlay transition duration perfectly
+                
+                if (underContent) {
+                    underContent.classList.add('ready');
+                }
+            }, 400); 
         });
 
         closeScratchBtn.addEventListener('click', () => {
@@ -338,3 +381,4 @@ document.addEventListener("DOMContentLoaded", function () {
             queueNextScratchCard();
         });
     }
+

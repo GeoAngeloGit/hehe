@@ -24,6 +24,13 @@
     <!-- Main content start - initially hidden until envelope is opened -->
     <main id="main-content" class="invisible-content">
         
+        <!-- BACKGROUND MUSIC ENGINE -->
+        <audio id="bg-music" loop>
+            <source src="images/Tothapi - Celeste (Official Lyric Video).mp3" type="audio/mp4">
+            <source src="images/music.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
         <!-- Hero section with video background and overlay text -->
         <section class="hero-section position-relative vh-100 w-100 overflow-hidden d-flex align-items-center justify-content-center">
             
@@ -36,7 +43,7 @@
 
             <div class="container position-relative text-center text-white z-2 px-4">
                 <h1 class="script-font display-1 mb-2 fade-in-up">365 Days with You</h1>
-                <p class="lead-text fw-light tracking-widest text-uppercase mb-0 fade-in-up-delay">Happy 1st Anniversary</p>
+                <p class="lead-text fw-light tracking-widest text-uppercase mb-0 fade-in-up-delay">Happy 1st Anniversary NICOLE!</p>
             </div>
             
         </section>
@@ -139,7 +146,7 @@
                 <div class="row g-4 justify-content-center">
                     
                     <!-- Left Scrapbook Carousel -->
-                    <div class="col-12 col-md-5">
+                    <div class="col-12 col-md-5 reveal-carousel">
                         <div id="scrapbookCarouselLeft" class="carousel slide smooth-carousel" data-bs-ride="carousel" data-bs-interval="3000">
                             <div class="carousel-inner rounded-4 shadow">
                                 <div class="carousel-item active">
@@ -183,7 +190,7 @@
                     </div>
 
                     <!-- Right Scrapbook Carousel -->
-                    <div class="col-12 col-md-5">
+                    <div class="col-12 col-md-5 reveal-carousel reveal-carousel-right">
                         <div id="scrapbookCarouselRight" class="carousel slide smooth-carousel" data-bs-ride="carousel" data-bs-interval="3500">
                             <div class="carousel-inner rounded-4 shadow">
                                 <div class="carousel-item active">
@@ -230,6 +237,83 @@
             </div>
         </section>
 
+        <!-- INTERACTIVE POLAROID FLIP SECTION -->
+        <section class="polaroid-section py-5">
+            <div class="container py-4 text-center">
+                
+                <h2 class="script-font display-4 mb-2 section-title">Tap to Flip Our Polaroids</h2>
+                <p class="text-muted small tracking-widest text-uppercase mb-5">There's a hidden message written on the back of each one</p>
+
+                <div class="row g-4 justify-content-center">
+                    
+                    <!-- Polaroid 1 -->
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 reveal-polaroid p-delay-1">
+                        <div class="polaroid-wrapper">
+                            <div class="polaroid-inner">
+                                <!-- Front Face (Image Look) -->
+                                <div class="card-front bg-white p-3 shadow-sm">
+                                    <div class="polaroid-photo-frame overflow-hidden rounded-2 mb-3">
+                                        <img src="images/0bec4997-0dda-4b39-8651-ae3deaeb9a94.jpg" class="w-100 h-100 object-fit-cover" alt="Memory Front 1">
+                                    </div>
+                                    <p class="script-font text-muted h5 m-0">The Little Things</p>
+                                </div>
+                                <!-- Back Face (Handwritten Letter Look) -->
+                                <div class="card-back d-flex flex-column align-items-center justify-content-center p-4 shadow-sm">
+                                    <span class="fs-3 mb-2">☕</span>
+                                    <h5 class="fw-bold text-danger mb-2">Our Coffee Chats</h5>
+                                    <p class="text-secondary small lh-base m-0">I love how we can sit down for hours talking about absolutely nothing and completely lose track of time. Those quiet moments with you are honestly my favorite parts of the week.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Polaroid 2 -->
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 reveal-polaroid p-delay-2">
+                        <div class="polaroid-wrapper">
+                            <div class="polaroid-inner">
+                                <!-- Front Face -->
+                                <div class="card-front bg-white p-3 shadow-sm">
+                                    <div class="polaroid-photo-frame overflow-hidden rounded-2 mb-3">
+                                        <img src="images/b52f2be0-9fd7-4322-a8a3-8a995c7419b8.jpg" class="w-100 h-100 object-fit-cover" alt="Memory Front 2">
+                                    </div>
+                                    <p class="script-font text-muted h5 m-0">Laughing With You</p>
+                                </div>
+                                <!-- Back Face -->
+                                <div class="card-back d-flex flex-column align-items-center justify-content-center p-4 shadow-sm">
+                                    <span class="fs-3 mb-2">🎈</span>
+                                    <h5 class="fw-bold text-danger mb-2">Your Smile</h5>
+                                    <p class="text-secondary small lh-base m-0">You have this incredible way of completely melting away my stressful days the exact second you start laughing. Thank you for always bringing so much joy into my life.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Polaroid 3 -->
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 reveal-polaroid p-delay-3">
+                        <div class="polaroid-wrapper">
+                            <div class="polaroid-inner">
+                                <!-- Front Face -->
+                                <div class="card-front bg-white p-3 shadow-sm">
+                                    <div class="polaroid-photo-frame overflow-hidden rounded-2 mb-3">
+                                        <img src="images/a783ebc2-9734-4f62-aeb7-33ec6454f316.jpg" class="w-100 h-100 object-fit-cover" alt="Memory Front 3">
+                                    </div>
+                                    <p class="script-font text-muted h5 m-0">Every Single Day</p>
+                                </div>
+                                <!-- Back Face -->
+                                <div class="card-back d-flex flex-column align-items-center justify-content-center p-4 shadow-sm">
+                                    <span class="fs-3 mb-2">⛵</span>
+                                    <h5 class="fw-bold text-danger mb-2">To Next Year</h5>
+                                    <p class="text-secondary small lh-base m-0">This whole year has felt like a dream come true, and looking at these photos makes me so incredibly excited for all the new places we are going to explore together next.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- End Row -->
+            </div>
+        </section>
+
+        <!-- Firsts section with timeline and final letter pop-up -->
         <section class="position-relative py-5 overflow-hidden" id="timeline-section">
             
             <div class="timeline-line-container d-none d-md-block">
