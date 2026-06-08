@@ -112,3 +112,107 @@ document.addEventListener("DOMContentLoaded", function () {
     // Request the browser to re-run the engine every single second (1000 milliseconds)
     setInterval(updateLiveCounter, 1000);
 });
+
+// ==========================================
+    // 3. TIMELINE ROW ENTRANCE ANIMATION (IntersectionObserver)
+    // ==========================================
+    const timelineRows = document.querySelectorAll('.reveal-row');
+    
+    const rowOptions = {
+        root: null,
+        threshold: 0.12, /* Triggers when 12% of the row comes into view */
+        rootMargin: "0px 0px -40px 0px"
+    };
+
+    const timelineObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+                observer.unobserve(entry.target); // Animates only once
+            }
+        });
+    }, rowOptions);
+
+    timelineRows.forEach(row => {
+        timelineObserver.observe(row);
+    });
+
+    // ==========================================
+    // 4. DYNAMIC SCROLL-DRAWN SVG PATH LOGIC
+    // ==========================================
+    const timelineSection = document.getElementById('timeline-section');
+    const drawPath = document.getElementById('draw-path');
+    
+    if (drawPath && timelineSection) {
+        const pathLength = drawPath.getTotalLength();
+        
+        // Hide the line initially by offsetting its dash array
+        drawPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+        drawPath.style.strokeDashoffset = pathLength;
+
+        function scrollDrawLine() {
+            const sectionRect = timelineSection.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            // We change the divisor slightly to make the line stop drawing right as it touches the envelope wrapper
+            let scrollProgress = (viewportHeight / 1.6 - sectionRect.top) / (sectionRect.height - 200);
+            scrollProgress = Math.max(0, Math.min(1, scrollProgress)); // Clamp strictly between 0 and 1
+
+            // Reveal the path based on scroll depth
+            drawPath.style.strokeDashoffset = pathLength - (scrollProgress * pathLength);
+        }
+
+        window.addEventListener('scroll', scrollDrawLine);
+        window.addEventListener('resize', scrollDrawLine);
+    }
+
+// ==========================================
+    // 5. FINAL MODAL POP-UP & TYPEWRITER ENGINE
+    // ==========================================
+    const finalTrigger = document.getElementById('final-envelope-trigger');
+    const letterModal = document.getElementById('letter-modal');
+    const closeModalBtn = document.getElementById('close-modal');
+    const typingContainer = document.getElementById('typing-letter');
+
+    // Write your custom anniversary letter message here. 
+    // You can use \n to create clean new line paragraph blocks!
+    const anniversaryMessageText = "Can you believe it has already been an entire beautiful year? \n\nLooking back at all our 'firsts' makes me realize how incredibly lucky I am to have you by my side. Thank you for every single smile, every random late-night laugh, and every quiet moment we've shared. You've made these past 365 days completely unforgettable.\n\nI love you more than words can express, and I can't wait for all the beautiful memories we will build in our second year together.\n\nHappy 1st Anniversary! ❤";
+
+    let textCharacterIndex = 0;
+    const mechanicalTypingSpeed = 45; // Miliseconds per letter (lower numbers make it faster!)
+    let typewriterStartedFlag = false;
+
+    function typewriterOutputEngine() {
+        if (textCharacterIndex < anniversaryMessageText.length) {
+            typingContainer.innerHTML += anniversaryMessageText.charAt(textCharacterIndex);
+            textCharacterIndex++;
+            setTimeout(typewriterOutputEngine, mechanicalTypingSpeed);
+        }
+    }
+
+    if (finalTrigger && letterModal && closeModalBtn) {
+        // Listen for the final envelope click
+        finalTrigger.addEventListener('click', function() {
+            letterModal.classList.remove('d-none'); // Unhide structure
+            
+            // Allow DOM breathing room to apply smooth entry transition class
+            setTimeout(() => {
+                letterModal.classList.add('show');
+            }, 15);
+
+            // Execute the live typing engine only once upon initial launch
+            if (!typewriterStartedFlag) {
+                typewriterStartedFlag = true;
+                setTimeout(typewriterOutputEngine, 700); // Small romantic pause before text starts writing
+            }
+        });
+
+        // Listen for the close button click
+        closeModalBtn.addEventListener('click', function() {
+            letterModal.classList.remove('show');
+            // Re-apply d-none layout lock after the smooth fade transition finishes completely
+            setTimeout(() => {
+                letterModal.classList.add('d-none');
+            }, 400);
+        });
+    }
