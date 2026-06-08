@@ -216,3 +216,125 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 400);
         });
     }
+
+// ==========================================
+    // 7. STAGGERED SCRATCH-CARD CORE LOGIC
+    // ==========================================
+    const scratchFab = document.getElementById('scratch-widget-btn');
+    const scratchModal = document.getElementById('scratch-modal');
+    const closeScratchBtn = document.getElementById('close-scratch-modal');
+    const canvas = document.getElementById('scratch-canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Queue data package for rewards (Images + Captions)
+    const scratchRewards = [
+        { img: "images/07a6306e-b48c-478c-831d-5b1ae0d372d4.jpg", caption: "✨ A cozy little late-night snack date with you." },
+        { img: "images/candid3.jpg", caption: "📸 Caught you smiling when you thought I wasn't looking!" },
+        { img: "images/candid5.jpg", caption: "❤️ My absolute favorite memory of us from this year." }
+    ];
+
+    let currentRewardIndex = 0;
+    let isDrawing = false;
+
+    // A. Time Orchestration: Show the FAB widget 30 seconds after previous event triggers
+    function queueNextScratchCard() {
+        if (currentRewardIndex < scratchRewards.length) {
+            setTimeout(() => {
+                // Update badge and pop button widget into view
+                document.querySelector('.fab-badge').innerText = 1;
+                scratchFab.classList.remove('d-none');
+                
+                // Set content hooks for the upcoming reveal card ahead of click
+                document.getElementById('scratch-reveal-img').src = scratchRewards[currentRewardIndex].img;
+                document.getElementById('scratch-reveal-caption').innerText = scratchRewards[currentRewardIndex].caption;
+                
+                // Initialize the canvas texture skin layering definitions
+                initScratchCanvas();
+            }, 30000); // 30,000 milliseconds = 30 seconds
+        }
+    }
+
+    // Initialize/Reset the Canvas texture masking blocks
+    function initScratchCanvas() {
+        // Set canvas resolutions to match CSS boundaries inside the frame
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+        
+        // Fill the mask skin block using Soft Rose color layer profile
+        ctx.fillStyle = '#E06B80';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        // Add metallic text element detailing the hidden reward
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 16px Montserrat';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('SCRATCH ME OUT!', canvas.width / 2, canvas.height / 2);
+    }
+
+    // B. Scratch Mechanics: Listen for touch/mouse vectors over canvas plane
+    function scratch(e) {
+        if (!isDrawing) return;
+        
+        // Find click coordinate offset map matching container bounds
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.touches[0].clientX) - rect.left;
+        const y = (e.clientY || e.touches[0].clientY) - rect.top;
+        
+        // Use standard clear mode composition path strings to wipe paint away
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 25, 0, Math.PI * 2); // 25 pixel brush brush radius
+        ctx.fill();
+    }
+
+    // Event Bindings for Scratch interaction hooks
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('mouseup', () => isDrawing = false);
+    canvas.addEventListener('mouseleave', () => isDrawing = false);
+    canvas.addEventListener('mousemove', scratch);
+
+    canvas.addEventListener('touchstart', () => isDrawing = true);
+    canvas.addEventListener('touchend', () => isDrawing = false);
+    canvas.addEventListener('touchmove', scratch);
+
+    // Open Pop-up Actions for Modal popup layers
+    if (scratchFab && scratchModal && closeScratchBtn) {
+        scratchFab.addEventListener('click', () => {
+            scratchModal.classList.remove('d-none');
+            
+            // 1. Give the modal a tiny fraction of a second to scale up into the viewport
+            setTimeout(() => {
+                scratchModal.classList.add('show');
+            }, 15);
+
+            // 2. FIXED: Wait 400 milliseconds for the CSS transition to complete 
+            // so the canvas has its real physical width/height before we paint it!
+            setTimeout(() => {
+                initScratchCanvas();
+            }, 400); // 400ms matches your modal-overlay transition duration perfectly
+        });
+
+        closeScratchBtn.addEventListener('click', () => {
+            scratchModal.classList.remove('show');
+            setTimeout(() => {
+                scratchModal.classList.add('d-none');
+                
+                if (!scratchFab.classList.contains('d-none')) {
+                    scratchFab.classList.add('d-none');
+                    currentRewardIndex++;
+                    queueNextScratchCard(); 
+                }
+            }, 400);
+        });
+    }
+
+    // C. The Trigger: To make it completely seamless, modify your initial Envelope Open Click 
+    // down in your script to call queueNextScratchCard() right away when the page starts!
+    const originalEnvelopeBtn = document.getElementById('open-envelope-btn');
+    if (originalEnvelopeBtn) {
+        originalEnvelopeBtn.addEventListener('click', function() {
+            // Start the 30-second stagger countdown calculation sequence the moment the landing page reveals itself!
+            queueNextScratchCard();
+        });
+    }
