@@ -1,0 +1,104 @@
+/* Custom Design Root Tokens */
+:root {
+    --deep-rose: #CD2C58;
+    --soft-rose: #E06B80;
+    --peach-cream: #FFC69D;
+    --warm-bg: #FFE6D4;
+    --soft-black: #212529; /* Clean default soft-black text */
+}
+
+/* Base Body Adjustments */
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--soft-black);
+    background-color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Typography Assignments */
+.script-font {
+    font-family: 'Allura', cursive;
+    color: #ffffff; /* White directly over the tinted video */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lead-text {
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* ==========================================================================
+   1. ENVELOPE INITIAL OVERLAY SCREEN
+   ========================================================================== */
+#envelope-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--warm-bg);
+    z-index: 99999;
+    transition: opacity 1s ease-in-out, visibility 1s;
+}
+
+.envelope-wrapper {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.envelope-icon {
+    font-size: 5rem;
+}
+
+.tracking-wide {
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    color: var(--deep-rose);
+}
+
+/* Class to smoothly drop out the screen overlay layer */
+.fade-out-overlay {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   2. HERO VIDEO LAYOUT
+   ========================================================================== */
+.hero-video {
+    object-fit: cover; /* Forces video to behave like background-size: cover */
+    z-index: 0;
+}
+
+/* The Low-Opacity Color Tint Grid Layer */
+.video-overlay {
+    /* Using Hex #CD2C58 translated to RGBA with a 0.40 (40%) opacity factor */
+    background-color: rgba(205, 44, 88, 0.4); 
+    z-index: 1;
+}
+
+.z-2 {
+    z-index: 2;
+}
+
+/* Simple Entrance Keyframe Animations for Hero Typography */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUpAnimation 1.2s forwards ease-out 0.4s;
+}
+
+.fade-in-up-delay {
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInUpAnimation 1.2s forwards ease-out 0.9s;
+}
+
+@keyframes fadeInUpAnimation {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
