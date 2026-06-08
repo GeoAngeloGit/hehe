@@ -30,6 +30,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (openEnvelopeBtn && envelopeOverlay) {
         openEnvelopeBtn.addEventListener('click', function () {
+            // 1. PRIORITIZE MUSIC: Play immediately on the raw click event
+            if (bgMusic) {
+                bgMusic.volume = 0.25; // Gentle 25% background volume
+                
+                let playPromise = bgMusic.play();
+                
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        console.log("Audio started successfully!");
+                    }).catch(error => {
+                        // This will print the exact reason to your browser console if it fails
+                        console.error("Audio playback failed: ", error);
+                    });
+                }
+            }
+            
             // 1. Fade out the invitation envelope cover
             envelopeOverlay.classList.add('fade-out-overlay');
             
@@ -37,17 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 mainContent.style.visibility = "visible";
                 mainContent.style.opacity = "1";
             }
-
-            // 2. NEW: Trigger the soft background music playback
-            if (bgMusic) {
-                bgMusic.volume = 0.3; // Sets volume to a gentle 30% background level
-                
-                // Play audio and catch any potential browser permission flags gracefully
-                bgMusic.play().catch(error => {
-                    console.log("Browser audio autoplay restriction triggered: ", error);
-                });
-            }
-
+            
             // Start the 30-second stagger countdown for the scratch card
             if (typeof queueNextScratchCard === "function") {
                 queueNextScratchCard();
