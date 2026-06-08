@@ -13,6 +13,7 @@
 </head>
 <body>
 
+    <!-- Envelope start -->
     <div id="envelope-overlay" class="d-flex flex-column align-items-center justify-content-center">
         <div class="envelope-wrapper text-center animate-bounce" id="open-envelope-btn">
             <span class="envelope-icon">✉️</span>
@@ -20,8 +21,10 @@
         </div>
     </div>
 
+    <!-- Main content start - initially hidden until envelope is opened -->
     <main id="main-content" class="invisible-content">
         
+        <!-- Hero section with video background and overlay text -->
         <section class="hero-section position-relative vh-100 w-100 overflow-hidden d-flex align-items-center justify-content-center">
             
             <video autoplay loop muted playsinline class="hero-video position-absolute top-50 start-50 translate-middle w-100 h-100">
@@ -38,6 +41,7 @@
             
         </section>
 
+        <!-- Time together section with dynamic counters -->
         <section class="time-section py-5 d-flex align-items-center">
             <div class="container text-center py-4">
                 
@@ -89,6 +93,107 @@
                     </div>
 
                 </div> 
+            </div>
+        </section>
+
+        <!-- SMOOTH SCRAPBOOK CAROUSELS SECTION -->
+        <section class="scrapbook-section py-5">
+            <div class="container py-4">
+                
+                <h2 class="script-font display-4 text-center mb-2 section-title">Our Favorite Moments</h2>
+                <p class="text-muted small text-center tracking-widest text-uppercase mb-5">A few small memories along the way</p>
+
+                <div class="row g-4 justify-content-center">
+                    
+                    <!-- Left Scrapbook Carousel -->
+                    <div class="col-12 col-md-5">
+                        <div id="scrapbookCarouselLeft" class="carousel slide smooth-carousel" data-bs-ride="carousel" data-bs-interval="3000">
+                            <div class="carousel-inner rounded-4 shadow">
+                                <div class="carousel-item active">
+                                    <img src="images/005cf9a9-55be-4dad-96f7-df88be08d4d3.jpg" class="d-block w-100 scrapbook-img" alt="Memory 1">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/07a6306e-b48c-478c-831d-5b1ae0d372d4.jpg" class="d-block w-100 scrapbook-img" alt="Memory 2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/0bec4997-0dda-4b39-8651-ae3deaeb9a94.jpg" class="d-block w-100 scrapbook-img" alt="Memory 3">
+                                </div>
+                                <div class="carousel-item active">
+                                    <img src="images/1921b9de-1f1e-4a68-b258-e39daf9b53d9.jpg" class="d-block w-100 scrapbook-img" alt="Memory 1">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images//1afe9194-1dfb-4caf-a4f4-756e0e5f1452.jpg" class="d-block w-100 scrapbook-img" alt="Memory 2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/24715458-9757-4afc-a512-3b2bfda4aa5e.jpg" class="d-block w-100 scrapbook-img" alt="Memory 3">
+                                </div>
+                                <div class="carousel-item active">
+                                    <img src="images/4fefe1e5-e57c-497b-9c90-516461b6568b.jpg" class="d-block w-100 scrapbook-img" alt="Memory 1">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/6ac9be14-f337-4f15-9b90-6cda6434cdf6.jpg" class="d-block w-100 scrapbook-img" alt="Memory 2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/8918a276-c3ac-4f2b-b6c6-bde76c038459.jpg" class="d-block w-100 scrapbook-img" alt="Memory 3">
+                                </div>
+                                <div class="carousel-item active">
+                                    <img src="images/e38ba783-b534-4648-8379-2eaa5a11ec72.jpg" class="d-block w-100 scrapbook-img" alt="Memory 1">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/IMG_4142 (1).jpg" class="d-block w-100 scrapbook-img" alt="Memory 2">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/IMG_4468 (1).jpg" class="d-block w-100 scrapbook-img" alt="Memory 3">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Scrapbook Carousel -->
+                    <div class="col-12 col-md-5">
+                        <div id="scrapbookCarouselRight" class="carousel slide smooth-carousel" data-bs-ride="carousel" data-bs-interval="3500">
+                            <div class="carousel-inner rounded-4 shadow">
+                                <div class="carousel-item active">
+                                    <img src="images/935fada2-8aaa-4ecf-8b69-6cb0cd74a1bf.jpg" class="d-block w-100 scrapbook-img" alt="Memory 4">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/9842e894-a2c9-4654-a2d6-5269fcc1aca4.jpg" class="d-block w-100 scrapbook-img" alt="Memory 5">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/a319617c-fdd0-4c0a-94a4-6f78b0a1cbf2.jpg" class="d-block w-100 scrapbook-img" alt="Memory 6">
+                                </div>
+                                <div class="carousel-item active">
+                                    <img src="images/a783ebc2-9734-4f62-aeb7-33ec6454f316.jpg" class="d-block w-100 scrapbook-img" alt="Memory 4">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/aaf39a02-f014-4ec3-a96c-2ac6aa01342b.jpg" class="d-block w-100 scrapbook-img" alt="Memory 5">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/ac1c3394-3bd5-4aae-a94a-b59f76361867.jpg" class="d-block w-100 scrapbook-img" alt="Memory 6">
+                                </div>
+                                <div class="carousel-item active">
+                                    <img src="images/b0d3c613-f4cf-4455-98e3-45abcd9d6e47.jpg" class="d-block w-100 scrapbook-img" alt="Memory 4">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/b153a47f-1118-4821-b744-9e859749a4b9.jpg" class="d-block w-100 scrapbook-img" alt="Memory 5">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/b52f2be0-9fd7-4322-a8a3-8a995c7419b8.jpg" class="d-block w-100 scrapbook-img" alt="Memory 6">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/bb75647b-9eea-4529-8e3f-7b963d9fa1c2.jpg" class="d-block w-100 scrapbook-img" alt="Memory 5">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/d4ecdad1-9fdf-4026-be10-1441937077c4.jpg" class="d-block w-100 scrapbook-img" alt="Memory 6">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="images/e1624d78-aed0-456d-bf66-cd3ae49c4d11.jpg" class="d-block w-100 scrapbook-img" alt="Memory 6">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- End Row -->
             </div>
         </section>
 

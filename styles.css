@@ -153,3 +153,28 @@ body {
         font-size: 0.6rem !important; /* Keeps labels tight and cohesive */
     }
 }
+
+/* ==========================================================================
+   4. SCRAPBOOK CAROUSELS STYLING
+   ========================================================================== */
+.scrapbook-section {
+    background-color: #ffffff;
+}
+
+/* Force Bootstrap to slide completely seamlessly */
+.smooth-carousel .carousel-item {
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Crop candid photos uniformly from the center */
+.scrapbook-img {
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media (min-width: 768px) {
+    .scrapbook-img {
+        height: 420px; /* Gives desktop layouts a taller aspect ratio */
+    }
+}
