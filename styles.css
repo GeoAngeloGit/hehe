@@ -102,3 +102,54 @@ body {
         transform: translateY(0);
     }
 }
+
+/* ==========================================================================
+   3. TIME COUNTER SECTION STYLING
+   ========================================================================== */
+.time-section {
+    background-color: #ffffff;
+    min-height: 50vh; /* Gives the section breathing room as you scroll */
+}
+
+/* Make this specific title use your Deep Rose palette color */
+.section-title {
+    color: var(--deep-rose) !important;
+    text-shadow: none !important; /* Removes the hero video drop shadow */
+}
+
+/* Individual Stat Cards Setup */
+.stat-card {
+    background-color: var(--warm-bg); /* Warm Cream Tint #FFE6D4 */
+    border: 1px solid rgba(224, 107, 128, 0.2); /* Soft Rose subtle border outline */
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Gentle bounce up effect when your partner hovers over a grid card */
+.stat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--soft-rose);
+}
+
+/* Highlight numbers using Soft Rose #E06B80 */
+.stat-number {
+    color: var(--soft-rose);
+}
+
+/* Small labels below the big numbers */
+.stat-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+/* Responsive font scaling for text safety on smaller phone viewports */
+@media (max-width: 576px) {
+    .stat-card {
+        padding: 15px 10px !important; /* Slightly snugger padding on mobile grids */
+    }
+    .stat-number {
+        font-size: 1.5rem !important; /* Shrinks numbers smoothly so they never hit the card walls */
+    }
+    .stat-label {
+        font-size: 0.6rem !important; /* Keeps labels tight and cohesive */
+    }
+}
