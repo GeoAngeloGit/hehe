@@ -388,3 +388,32 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+// ==========================================
+    // 9. NAVBAR ACTIVE SECTIONS TRACKING TRACKER
+    // ==========================================
+    const navLinks = document.querySelectorAll('.custom-pill-nav .nav-link');
+    const scrollSections = document.querySelectorAll('#main-content, #counter-section, #moments-section, #polaroid-section, #timeline-section');
+
+    function highlightNavbarOnScroll() {
+        let currentActiveId = "";
+        const scrollPosition = window.scrollY + 120; // 120px cushion tracking space offset
+
+        scrollSections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentActiveId = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active-pill');
+            // If the anchor matches the current active section ID on screen
+            if (link.getAttribute('href') === `#${currentActiveId}` || (currentActiveId === "main-content" && link.getAttribute('href') === "#main-content")) {
+                link.classList.add('active-pill');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', highlightNavbarOnScroll);
+

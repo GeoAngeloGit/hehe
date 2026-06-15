@@ -9,6 +9,8 @@
 
 /* Base Body Adjustments */
 body {
+    margin: 0;
+    padding: 0;
     font-family: 'Montserrat', sans-serif;
     color: var(--soft-black);
     /* CHANGED: Swapped from pure white to your soft warm red tint */
@@ -508,4 +510,61 @@ body {
 .reveal-polaroid.active {
     opacity: 1;
     transform: scale(1) translateY(0); /* Snaps beautifully into perfect position */
+}
+
+/* ==========================================================================
+   12. PREMIUM FLOATING PILL NAVBAR STYLING
+   ========================================================================== */
+.custom-pill-nav {
+    top: 20px; /* Floats slightly down from the screen ceiling */
+    z-index: 9999; /* Ensures it sits above everything else securely */
+}
+
+/* The Dark Frosted Pill Core Chassis */
+.custom-pill-nav .navbar-nav {
+    background: rgba(33, 37, 41, 0.75); /* Dark translucent background matching the sample design */
+    backdrop-filter: blur(12px); /* Premium frosted-glass backdrop blur effect */
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 14px;
+    border-radius: 50px; /* Force sharp, clean pill oval edges */
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    gap: 6px;
+}
+
+/* Individual Pill Links Layout */
+.custom-pill-nav .nav-link {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 8px 16px !important;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Icon layout sizes */
+.nav-icon {
+    font-size: 1rem;
+}
+
+/* Hover State Transition Styles */
+.custom-pill-nav .nav-link:hover {
+    color: #ffffff !important;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Active Highlight Pill - Uses your signature Deep Rose #CD2C58 */
+.custom-pill-nav .nav-link.active-pill {
+    background-color: var(--deep-rose) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(205, 44, 88, 0.3);
+}
+
+/* Breathing Room for Content Header Padding Adjustments */
+#main-content {
+    padding-top: 0;
 }

@@ -23,6 +23,50 @@
 
     <!-- Main content start - initially hidden until envelope is opened -->
     <main id="main-content" class="invisible-content">
+
+        <!-- nav bar start -->
+        <nav class="navbar navbar-expand navbar-dark fixed-top custom-pill-nav">
+            <div class="container justify-content-center">
+                <ul class="navbar-nav nav-pills align-items-center">
+                    
+                    <li class="nav-item">
+                        <a class="nav-link active-pill" href="#main-content" title="Home">
+                            <span class="nav-icon">🏠</span>
+                            <span class="nav-text d-none d-md-inline">Home</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#counter-section" title="Our Time">
+                            <span class="nav-icon">⏳</span>
+                            <span class="nav-text d-none d-md-inline">Our Time</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#moments-section" title="Moments">
+                            <span class="nav-icon">✨</span>
+                            <span class="nav-text d-none d-md-inline">Moments</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#polaroid-section" title="Polaroids">
+                            <span class="nav-icon">📸</span>
+                            <span class="nav-text d-none d-md-inline">Polaroids</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#timeline-section" title="Our Firsts">
+                            <span class="nav-icon">❤️</span>
+                            <span class="nav-text d-none d-md-inline">Our Firsts</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
         
         <!-- BACKGROUND MUSIC ENGINE -->
         <audio id="bg-music" loop>
@@ -31,7 +75,7 @@
         </audio>
 
         <!-- Hero section with video background and overlay text -->
-        <section class="hero-section position-relative vh-100 w-100 overflow-hidden d-flex align-items-center justify-content-center">
+        <section id="main-content" class="hero-section position-relative vh-100 w-100 overflow-hidden d-flex align-items-center justify-content-center">
             
             <video autoplay loop muted playsinline class="hero-video position-absolute top-50 start-50 translate-middle w-100 h-100">
                 <source src="images/hero vid.mp4" type="video/mp4">
@@ -81,7 +125,7 @@
         </div>
 
         <!-- Time together section with dynamic counters -->
-        <section class="time-section py-5 d-flex align-items-center">
+        <section id="counter-section" class="time-section py-5 d-flex align-items-center">
             <div class="container text-center py-4">
                 
                 <h2 class="script-font display-4 mb-2 section-title">Growing Together In...</h2>
@@ -136,7 +180,7 @@
         </section>
 
         <!-- SMOOTH SCRAPBOOK CAROUSELS SECTION -->
-        <section class="scrapbook-section py-5">
+        <section id="moments-section" class="scrapbook-section py-5">
             <div class="container py-4">
                 
                 <h2 class="script-font display-4 text-center mb-2 section-title">Our Favorite Moments</h2>
@@ -237,7 +281,7 @@
         </section>
 
         <!-- INTERACTIVE POLAROID FLIP SECTION -->
-        <section class="polaroid-section py-5">
+        <section id="polaroid-section" class="polaroid-section py-5">
             <div class="container py-4 text-center">
                 
                 <h2 class="script-font display-4 mb-2 section-title">Tap to Flip Our Polaroids</h2>
