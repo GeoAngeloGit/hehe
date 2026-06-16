@@ -203,16 +203,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Write your custom anniversary letter message here. 
     // You can use \n to create clean new line paragraph blocks!
-    const anniversaryMessageText = "Can you believe it has already been an entire beautiful year? \n\nLooking back at all our 'firsts' makes me realize how incredibly lucky I am to have you by my side. Thank you for every single smile, every random late-night laugh, and every quiet moment we've shared. You've made these past 365 days completely unforgettable.\n\nI love you more than words can express, and I can't wait for all the beautiful memories we will build in our second year together.\n\nHappy 1st Anniversary! ❤";
+    const anniversaryMessageText = "Hi, medj marami na akong letter, well dito palang ilan nang dati kaya iksian ko nalang. Mahirap talaga isipin na 1 year na tayu, time flies so fast talaga, and sa bilis ng panahon, napakarami rin tayong pinagsamahan, magkalayo man o magkalapit. Pero imagine mo, 2 school years na tayung ldr, pero ganito parin katatag relationship natin. Pareho naman tayong nahirapan at napagod dahil nga malayo. Like may mga times na gustong-gusto ko na kasama ka or gusto ko sinasamahan kita lalo na during small wins and losses natin, pero hindi natin magawa-gawa. Pero it is one of the many sacrifices we have to make for each other. \n\n Another thing, medyo palagi ko na man den sinasabi, is how grateful I am to you. Isa ka talaga sa pinakamagandang nangyare saakin, not exaggerating, medyo cringe pero it is true. Hindi ko na maimagine mga araw ko kung hindi kita kausap, and I don't want that to happen. I'm thankful for your love, patience, kindness, presence, sincerity, trust, and support, and I hope I am giving it all back to you just enough for you to feel all the things you give me. Isa rin sa natutunan ko nung camp is how to find my safe space to be vulnerable, to be who i really am, and you, nicole, are my safest space, and sana you feel the same way too. You bring out the best in me, you make me do the things I thought I can’t, and you fill me. \n\n This anniversary will be the first of many more to come. I may not be the best boyfriend out there, but I hope you feel that what I only want is the best for you, because you, indeed, deserve only the best in this world. Hindi man madali pinagdaanan natin pero have come this far and proud ako sa ating dalawa. \n\nI love you Nicole \n\n - your IT boy";
 
     let textCharacterIndex = 0;
-    const mechanicalTypingSpeed = 45; // Miliseconds per letter (lower numbers make it faster!)
+    const mechanicalTypingSpeed = 65; // Miliseconds per letter (lower numbers make it faster!)
     let typewriterStartedFlag = false;
 
     function typewriterOutputEngine() {
         if (textCharacterIndex < anniversaryMessageText.length) {
             typingContainer.innerHTML += anniversaryMessageText.charAt(textCharacterIndex);
             textCharacterIndex++;
+            typingContainer.scrollTop = typingContainer.scrollHeight;
             setTimeout(typewriterOutputEngine, mechanicalTypingSpeed);
         }
     }
@@ -220,6 +221,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (finalTrigger && letterModal && closeModalBtn) {
         // Listen for the final envelope click
         finalTrigger.addEventListener('click', function() {
+            typingContainer.scrollTop = 0;
             letterModal.classList.remove('d-none'); // Unhide structure
             
             // Allow DOM breathing room to apply smooth entry transition class
@@ -267,9 +269,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Queue data package for rewards (Images + Captions)
     const scratchRewards = [
-        { img: "images/07a6306e-b48c-478c-831d-5b1ae0d372d4.jpg", caption: "✨ A cozy little late-night snack date with you." },
-        { img: "images/candid3.jpg", caption: "📸 Caught you smiling when you thought I wasn't looking!" },
-        { img: "images/candid5.jpg", caption: "❤️ My absolute favorite memory of us from this year." }
+        { img: "images/ffc508d4-b3c9-45f5-8607-3e7236e42f06.jpg", caption: "✨ hihi first time kitang bigyan ng flowers face-to-face nito." },
+        { img: "images/e021410e-69f7-4489-a51c-dbf2395881d7.jpg", caption: "📸 puro talikod ka sa mga candid mo saakin, sure kase akong tatakpan mo or maga pose ka pag harapann" },
+        { img: "images/44e87f3e-09e7-4261-b32e-98b8672fecfa.jpg", caption: "💐 hindi ako magsasawang bigyan ka ng flowers, nawawala ka nga pagnaga selfie ka kasama yung bouquett" }
     ];
 
     let currentRewardIndex = 0;
